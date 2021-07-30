@@ -1,0 +1,37 @@
+type Event {
+  id: String
+  name: String
+  description: String
+  createdAt: String
+  updatedAt: String
+  User: User
+}
+
+type getEvent {
+    createdAt: String
+    updatedAt: String
+    Event: Event
+}
+
+input eventInput {
+  name: String,
+  description: String
+}
+
+input filter {
+    offset: Int
+    limit: Int 
+    name: String
+    description: String
+    createdAt: String
+    updatedAt: String
+}
+
+type Query {
+  getEvents(filter: filter): [getEvent]
+}
+
+type Mutation {
+  createEvent(event: eventInput): Event
+  inviteEvent(event_id: String, invites: [String!]!): Event
+}
